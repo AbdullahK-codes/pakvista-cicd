@@ -1,21 +1,24 @@
 /* ===== Design Tokens ===== */
+
 :root {
   --color-primary: #0b5d3b;
   --color-secondary: #f2a541;
   --color-accent: #1b7a4d;
   --color-bg: #fafaf7;
-  --color-surface: #ffffff;
+  --color-surface: #fff;
   --color-text: #20281f;
   --color-text-light: #5a6259;
   --color-border: #d8ddd3;
   --font-heading: "Georgia", "Times New Roman", serif;
-  --font-body: "Segoe UI", Tahoma, Verdana, sans-serif;
+  --font-body: "Segoe UI", tahoma, verdana, sans-serif;
   --radius: 8px;
   --max-width: 1100px;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -23,6 +26,7 @@ body {
   background-color: var(--color-bg);
   line-height: 1.6;
 }
+
 h1,
 h2,
 h3 {
@@ -30,31 +34,40 @@ h3 {
   color: var(--color-primary);
   margin-top: 0;
 }
+
 h1 {
   font-size: 2.4rem;
 }
+
 h2 {
   font-size: 1.8rem;
 }
+
 h3 {
   font-size: 1.3rem;
 }
+
 p {
   color: var(--color-text);
   margin: 0.6em 0;
 }
+
 a {
   color: var(--color-accent);
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
+
 /* ===== Navigation Bar ===== */
+
 nav.nav-bar {
   background-color: var(--color-primary);
   padding: 0.8rem 1rem;
 }
+
 nav.nav-bar ul {
   list-style: none;
   display: flex;
@@ -63,20 +76,24 @@ nav.nav-bar ul {
   margin: 0;
   padding: 0;
   max-width: var(--max-width);
-  margin: 0 auto;
+  margin-inline: auto;
 }
+
 nav.nav-bar ul li a {
-  color: #ffffff;
+  color: #fff;
   font-weight: 600;
   padding: 0.3rem 0.5rem;
   border-radius: var(--radius);
 }
+
 nav.nav-bar ul li a:hover {
   background-color: var(--color-secondary);
   color: #1a1a1a;
   text-decoration: none;
 }
+
 /* ===== Layout ===== */
+
 header,
 main,
 footer {
@@ -84,6 +101,7 @@ footer {
   margin: 0 auto;
   padding: 1.5rem;
 }
+
 .hero {
   color: #fff;
   padding: 3rem 1.5rem;
@@ -95,10 +113,12 @@ footer {
     var(--color-accent)
   );
 }
+
 .hero h1,
 .hero p {
   color: #fff;
 }
+
 section,
 article {
   background-color: var(--color-surface);
@@ -107,7 +127,9 @@ article {
   padding: 1.2rem 1.5rem;
   margin-bottom: 1.2rem;
 }
+
 /* ===== Image Placeholder ===== */
+
 .img-placeholder {
   width: 200px;
   height: 150px;
@@ -122,31 +144,39 @@ article {
   text-align: center;
   margin: 0.5rem 0;
 }
+
 figure {
   margin: 0.5rem 0;
 }
+
 figcaption {
   font-size: 0.85rem;
   color: var(--color-text-light);
   margin-top: 0.3rem;
 }
+
 /* ===== Tables ===== */
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
 }
+
 th,
 td {
   border: 1px solid var(--color-border);
   padding: 0.6rem;
   text-align: left;
 }
+
 th {
   background-color: var(--color-primary);
   color: #fff;
 }
+
 /* ===== Footer ===== */
+
 footer {
   text-align: center;
   color: var(--color-text-light);
@@ -155,12 +185,15 @@ footer {
   margin-top: 2rem;
   padding-top: 1rem;
 }
+
 /* ===== Responsive ===== */
-@media (max-width: 600px) {
+
+@media (width <= 600px) {
   nav.nav-bar ul {
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .hero h1 {
     font-size: 1.8rem;
   }
