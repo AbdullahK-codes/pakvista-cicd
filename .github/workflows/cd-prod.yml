@@ -1,20 +1,45 @@
-name: cd-prod
+name: ci-prod
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
 jobs:
-  cd-prod:
+  ci-prod:
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Trigger Render Deploy Hook (Production)
-        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_PROD_URL }}"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Confirm Deployment
-        run: echo "Deployment to production triggered at $(date)"
+      - name: Install dependencies (linters + Parcel)
+        run: npm install
+
+      - name: Lint HTML
+        run: npx htmlhint "*.html"
+
+      - name: Lint CSS
+        run: npx stylelint "style.css"
+
+      - name: Build with Parcel
+        run: npx parcel build index.html lahore.html hunza.html karachi.html swat.html --dist-dir dist --no-cache
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/pakvista:prod-latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/pakvista:prod-${{ github.sha }}
