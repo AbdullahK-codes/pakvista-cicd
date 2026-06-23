@@ -42,7 +42,7 @@ jobs:
           push: false
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pakvista:dev-latest
 
-      - name: Tag and Push Docker image
+      - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
