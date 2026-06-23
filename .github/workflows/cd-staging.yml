@@ -1,0 +1,16 @@
+name: cd-staging
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  cd-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Trigger Render Deploy Hook (Staging)
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_STAGING_URL }}"
+      - name: Confirm Deployment
+        run: echo "Deployment to staging triggered at $(date)"
